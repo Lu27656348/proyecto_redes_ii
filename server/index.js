@@ -13,18 +13,27 @@ const io = new SocketServer(server, {
 import {PORT} from './config.js'
 app.use(cors())
 app.use(morgan('dev'))
-
+app.use(express.urlencoded({ extended: false }));
+/*
 io.on("connection", (socket)=>{
-    console.log(socket.id);
     console.log('usuario conectado');
     socket.on('mensaje', function (mensaje){
-        console.log(mensaje);
         socket.broadcast.emit('mensaje', {
-            body: mensaje,
-            from: socket.id
+            body: mensaje.body,
+            from: mensaje.id
         });
     })
 } )
+*/
+io.on("connection", (socket) => {
+    console.log(socket.id);
+    socket.on("message", (body) => {
+      socket.broadcast.emit("message", {
+        body,
+        from: socket.id.slice(8),
+      });
+    });
+});
 server.listen(PORT);
 console.log('Servidor iniciado en el puerto', PORT );
 

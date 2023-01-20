@@ -56,9 +56,9 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Redes II</h1>
+    <div className="h-screen bg-zinc-800 text-white flex items-center justify-center">
+      <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
+        <h1 className="flex justify-center">Redes II Proyecto</h1>
         <input
           name="message"
           type="text"
@@ -66,11 +66,12 @@ function App() {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
           autoFocus
+          className="rounded-md text-black"
         />
-        <ul>
+        <ul className='h-80 overflow-y-auto'>
           {messages.map((message, index) => (
             <li
-              key={index}
+              key={index} className={`my-2 p-2 table text-sm rounded-md ${(message.from === "Me" ? 'bg-green-700 ml-auto' : 'bg-red-700')}`}
             >
               <b>{message.from}</b>:{message.body}
             </li>

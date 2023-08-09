@@ -6,29 +6,6 @@ import { useState,useEffect } from 'react'
 const socket = io('http://localhost:4000');
 
 function App() {
-  /*
-  const [mensaje, setMensaje] = useState();
-  const [chat, setChat] = useState([])
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const mensaje_nuevo = {
-      body: mensaje,
-      from: "Me",
-    };
-    socket.emit('mensaje', mensaje_nuevo);
-    setChat([...chat,mensaje])
-    setMensaje('')
-  }
-  useEffect( ()=> {
-    const recibir = (mensaje) => {
-      setChat([mensaje, ...chat]);
-    };
-    socket.on('mensaje', recibir)
-    return ()=>{
-      socket.off('mensaje',recibir);
-    }
-  },[chat])
-  */
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -57,8 +34,8 @@ function App() {
 
   return (
     <div className="h-screen bg-zinc-800 text-white flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
-        <h1 className="flex justify-center">Redes II Proyecto</h1>
+      <form onSubmit={handleSubmit} className="bg-zinc-900 p-10 mb-5">
+        <h1 className="flex justify-center">Socket Chat </h1>
         <input
           name="message"
           type="text"
